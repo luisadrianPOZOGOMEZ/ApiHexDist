@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.publicityController = exports.deletePublicityUseCase = exports.updatePublicityUseCase = exports.getByIdPublicityUseCase = exports.createPublicityUserCase = exports.getAllPublicityUseCase = void 0;
+const CreatePublicityUseCase_1 = __importDefault(require("../application/CreatePublicityUseCase"));
+const DeletePublicityUseCase_1 = __importDefault(require("../application/DeletePublicityUseCase"));
+const GetAllPublicityUseCase_1 = __importDefault(require("../application/GetAllPublicityUseCase"));
+const GetByIdPublicityUseCase_1 = __importDefault(require("../application/GetByIdPublicityUseCase"));
+const UpdatePublicityUseCase_1 = __importDefault(require("../application/UpdatePublicityUseCase"));
+const Factory_1 = require("./adapters/repositories/Factory");
+const PublicityController_1 = __importDefault(require("./Controllers/PublicityController"));
+const publicityRepository = Factory_1.Factory.createPublicityRepository();
+exports.getAllPublicityUseCase = new GetAllPublicityUseCase_1.default(publicityRepository);
+exports.createPublicityUserCase = new CreatePublicityUseCase_1.default(publicityRepository);
+exports.getByIdPublicityUseCase = new GetByIdPublicityUseCase_1.default(publicityRepository);
+exports.updatePublicityUseCase = new UpdatePublicityUseCase_1.default(publicityRepository);
+exports.deletePublicityUseCase = new DeletePublicityUseCase_1.default(publicityRepository);
+exports.publicityController = new PublicityController_1.default(exports.getAllPublicityUseCase, exports.createPublicityUserCase, exports.getByIdPublicityUseCase, exports.updatePublicityUseCase, exports.deletePublicityUseCase);
